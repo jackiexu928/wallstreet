@@ -98,7 +98,7 @@ public class WallStreetUtil {
             }
             con.disconnect();
             String ss = sb.toString().toLowerCase();
-            System.out.println(ss);
+            //System.out.println(ss);
             return JSON.parseObject(ss, HttpResponse.class);
         } catch (Exception e){
             return null;
