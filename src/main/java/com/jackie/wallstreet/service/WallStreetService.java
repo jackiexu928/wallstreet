@@ -89,7 +89,7 @@ public class WallStreetService {
                 stringBuilder.append(item.getContentText() + "\n");
                 stringBuilder.append("-------------------------------------------------------------------------------");
             });
-            mailService.sendSimpleMail("137469680@qq.com;3543721625@qq.com", "WallStreet", stringBuilder.toString());
+            mailService.sendSimpleMail("137469680@qq.com;2543721625@qq.com", "WallStreet", stringBuilder.toString());
         }
     }
 
