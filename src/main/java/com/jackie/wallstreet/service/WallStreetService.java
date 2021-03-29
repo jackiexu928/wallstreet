@@ -5,8 +5,10 @@ import com.jackie.wallstreet.client.SharesFeignClient;
 import com.jackie.wallstreet.commom.WallStreetChannel;
 import com.jackie.wallstreet.domain.response.HttpItem;
 import com.jackie.wallstreet.entity.ImportantNews;
+import com.jackie.wallstreet.entity.MessageRecord;
 import com.jackie.wallstreet.factory.ImportaneNewsFactory;
 import com.jackie.wallstreet.mapper.ImportantNewsMapper;
+import com.jackie.wallstreet.mapper.MessageRecordMapper;
 import com.jackie.wallstreet.util.WallStreetUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,8 @@ public class WallStreetService {
     private SharesFeignClient sharesFeignClient;
     @Autowired
     private MailService mailService;
+    @Autowired
+    private MessageRecordMapper messageRecordMapper;
 
     private static final String[] DEPARTMENT = {"国务院", "财政部", "中国人民银行", "国家发展和改革委员会", "发改委", "商务部",
             "国家统计局", "国务院国有资产监督委员会"};
@@ -86,8 +90,9 @@ public class WallStreetService {
                 Date date = new Date(item.getDisplayTime() * 1000);
                 SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
                 stringBuilder.append(sdf.format(date) + "\n");
+                stringBuilder.append(item.getTitle() + "\n");
                 stringBuilder.append(item.getContentText() + "\n");
-                stringBuilder.append("-------------------------------------------------------------------------------");
+                stringBuilder.append("------------------------------------------------------------------------\n");
             });
             mailService.sendSimpleMail("137469680@qq.com", "WallStreet", stringBuilder.toString());
         }
@@ -96,19 +101,33 @@ public class WallStreetService {
     private List<HttpItem> filterInfo(List<HttpItem> list, List<String> recordList){
         List<HttpItem> filterList = new ArrayList<>();
         my: for(HttpItem item : list){
+            if (messageRecordMapper.selectCountByContentId(item.getId()) > 0){
+                continue;
+            }
             for (String dept : DEPARTMENT){
                 if (item.getContentText().contains(dept)){
                     filterList.add(item);
+                    addMessageRecord(item);
                     continue my;
                 }
             }
             for (String record : recordList){
                 if (item.getContentText().contains(record)){
                     filterList.add(item);
+                    addMessageRecord(item);
                     continue my;
                 }
             }
         }
         return filterList;
+    }
+
+    private void addMessageRecord(HttpItem item){
+        MessageRecord messageRecord = new MessageRecord();
+        messageRecord.setContentId(item.getId());
+        messageRecord.setContentText(item.getContentText());
+        messageRecord.setTitle(item.getTitle());
+        messageRecord.setCreateTime(new Date());
+        messageRecordMapper.insert(messageRecord);
     }
 }
