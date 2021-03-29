@@ -16,7 +16,7 @@ class WallstreetApplicationTests {
 
     @Test
     void testMessage(){
-        mailService.sendSimpleMail("jackiemagic@sina.com", "test", "测试");
+        mailService.sendSimpleMail("jackiemagic@sina.com;137469680@qq.com", "test", "测试");
     }
 
 }

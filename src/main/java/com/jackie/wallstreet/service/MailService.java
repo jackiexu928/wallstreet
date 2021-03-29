@@ -7,6 +7,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
 /**
  * Created with IntelliJ IDEA
  * Description:
@@ -26,10 +28,15 @@ public class MailService {
     public void sendSimpleMail(String to, String subject, String content){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
-        message.setTo(to);
+        //message.setTo(to);
         message.setSubject(subject);
         message.setText(content);
-
-        javaMailSender.send(message);
+        if (to.contains(";")){
+            String[] tos = to.split(";");
+            Arrays.stream(tos).forEach(toAddress -> {
+                message.setTo(toAddress);
+                javaMailSender.send(message);
+            });
+        }
     }
 }
