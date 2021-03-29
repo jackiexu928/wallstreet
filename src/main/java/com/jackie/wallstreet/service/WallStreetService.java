@@ -35,7 +35,8 @@ public class WallStreetService {
     private MailService mailService;
 
     private static final String[] DEPARTMENT = {"国务院", "财政部", "中国人民银行", "国家发展和改革委员会", "发改委", "商务部",
-            "国家统计局", "国务院国有资产监督委员会"};
+            "国家统计局", "国务院国有资产监督委员会",
+            "加密货币","比特币","以太坊"};
 
     /**
      * 1.从华尔街见闻网站获取信息
