@@ -1,6 +1,8 @@
 package com.jackie.wallstreet.service;
 
 import com.alibaba.fastjson.JSON;
+import com.jackie.stockbean.message.dto.request.MailReqDTO;
+import com.jackie.wallstreet.client.MessageFeignClient;
 import com.jackie.wallstreet.client.SharesFeignClient;
 import com.jackie.wallstreet.commom.WallStreetChannel;
 import com.jackie.wallstreet.domain.response.HttpItem;
@@ -34,9 +36,9 @@ public class WallStreetService {
     @Autowired
     private SharesFeignClient sharesFeignClient;
     @Autowired
-    private MailService mailService;
-    @Autowired
     private MessageRecordMapper messageRecordMapper;
+    @Autowired
+    private MessageFeignClient messageFeignClient;
 
     private static final String[] DEPARTMENT = {"国务院", "财政部", "中国人民银行", "国家发展和改革委员会", "发改委", "商务部",
             "国家统计局", "国务院国有资产监督委员会",
@@ -95,7 +97,11 @@ public class WallStreetService {
                 stringBuilder.append(item.getContentText() + "\n");
                 stringBuilder.append("------------------------------------------------------------------------\n");
             });
-            mailService.sendSimpleMail("137469680@qq.com;2543721625@qq.com", "WallStreet", stringBuilder.toString());
+            MailReqDTO reqDTO = new MailReqDTO();
+            reqDTO.setTo("137469680@qq.com;2543721625@qq.com");
+            reqDTO.setSubject("WallStreet");
+            reqDTO.setContent(stringBuilder.toString());
+            messageFeignClient.sendMail(reqDTO);
         }
     }
 

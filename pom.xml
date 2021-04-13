@@ -65,6 +65,11 @@
             <artifactId>jackiecommon</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.jackie</groupId>
+            <artifactId>stock-bean</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
