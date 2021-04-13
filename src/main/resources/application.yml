@@ -38,7 +38,7 @@ eureka:
     prefer-ip-address: true
 
 mybatis:
-  type-aliases-package: com.jackie.wallstreet.entity
+  type-aliases-package: com.jackie.stockbean.wallstreet.entity
   #\u5F00\u542F\u9A7C\u5CF0\u6620\u5C04
   configuration:
     map-underscore-to-camel-case: true

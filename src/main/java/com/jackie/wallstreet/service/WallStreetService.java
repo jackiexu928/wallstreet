@@ -2,12 +2,12 @@ package com.jackie.wallstreet.service;
 
 import com.alibaba.fastjson.JSON;
 import com.jackie.stockbean.message.dto.request.MailReqDTO;
+import com.jackie.stockbean.wallstreet.commom.WallStreetChannel;
+import com.jackie.stockbean.wallstreet.entity.ImportantNews;
+import com.jackie.stockbean.wallstreet.entity.MessageRecord;
 import com.jackie.wallstreet.client.MessageFeignClient;
 import com.jackie.wallstreet.client.SharesFeignClient;
-import com.jackie.wallstreet.commom.WallStreetChannel;
 import com.jackie.wallstreet.domain.response.HttpItem;
-import com.jackie.wallstreet.entity.ImportantNews;
-import com.jackie.wallstreet.entity.MessageRecord;
 import com.jackie.wallstreet.factory.ImportaneNewsFactory;
 import com.jackie.wallstreet.mapper.ImportantNewsMapper;
 import com.jackie.wallstreet.mapper.MessageRecordMapper;

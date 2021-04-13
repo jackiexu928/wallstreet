@@ -1,8 +1,8 @@
 package com.jackie.wallstreet.factory;
 
 import com.alibaba.fastjson.JSON;
+import com.jackie.stockbean.wallstreet.entity.ImportantNews;
 import com.jackie.wallstreet.domain.response.HttpItem;
-import com.jackie.wallstreet.entity.ImportantNews;
 
 import java.util.Date;
 

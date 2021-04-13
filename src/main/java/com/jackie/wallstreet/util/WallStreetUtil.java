@@ -1,7 +1,7 @@
 package com.jackie.wallstreet.util;
 
 import com.alibaba.fastjson.JSON;
-import com.jackie.wallstreet.commom.WallStreetChannel;
+import com.jackie.stockbean.wallstreet.commom.WallStreetChannel;
 import com.jackie.wallstreet.domain.query.WallStreetCnQuery;
 import com.jackie.wallstreet.domain.response.HttpItem;
 import com.jackie.wallstreet.domain.response.HttpResponse;
@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -133,8 +132,6 @@ public class WallStreetUtil {
         }
         return null;
     }
-
-
 
     public static void main(String[] args) {
         WallStreetCnQuery query = WallStreetQueryFactory.getQuery("Search", GLOBAL, null);

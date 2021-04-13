@@ -1,6 +1,6 @@
 package com.jackie.wallstreet.mapper;
 
-import com.jackie.wallstreet.entity.ImportantNews;
+import com.jackie.stockbean.wallstreet.entity.ImportantNews;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
