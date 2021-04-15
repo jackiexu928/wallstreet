@@ -24,11 +24,6 @@ spring:
       pool:
         #\u914D\u7F6E\u53EF\u7528\u5B9A\u65F6\u4EFB\u52A1\u7EBF\u7A0B\u6570\u4E3A10\uFF0C\u907F\u514D\u7EBF\u7A0B\u963B\u585E
         size: 10
-  mail:
-    host: smtp.126.com
-    username: jackiexu92@126.com
-    password: ETBULYBLCDUXFDAU
-    default-encoding: UTF-8
 
 eureka:
   client:
